@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel = "stylesheet" href="styles.css">
+</head>
+<body>
+    <button class = "change">Change Grid Layout</button>
+    <div class = "container"></div>
+    <script>
+        let container = document.querySelector(".container")
+        function createGrid(num = 16){
+            for (let i = 0; i <= num; i++){
+                let row = document.createElement("div");
+                row.style.display = "flex";
+                row.style.flex = "1";
+                for (let j = 0; j <= num; j++){
+                    let box = document.createElement("div")
+                    box.style.borderStyle = "solid";
+                    box.style.borderColor = "black";
+                    box.style.flex = "1";
+                    box.addEventListener("mouseover", function(e){
+                        e.target.style.backgroundColor = "pink";
+                    });
+                    box.addEventListener("mouseout", function(e){
+                        e.target.style.backgroundColor = "white";
+                    })
+                    row.appendChild(box);
+                }
+                container.appendChild(row);
+            }
+        }
+        createGrid();
+        let button = document.querySelector(".change")
+        let newGridValue = 0;
+        button.addEventListener("click", function(){
+            let newGridValue = prompt("Input new grid value:");
+            if (newGridValue > 100){
+                alert("Value must be 100 or less");
+            }
+            else{
+                container.innerHTML = "";
+                createGrid(newGridValue);
+            }
+        })
+    </script>
+</body>
+</html>
